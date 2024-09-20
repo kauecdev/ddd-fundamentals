@@ -27,7 +27,6 @@ describe('Edit Answer Use Case', () => {
 
     expect(inMemoryAnswersRepository.items[0]).toMatchObject({
       props: {
-        title: 'Pergunta teste',
         content: 'Conteúdo teste'
       }
     })
