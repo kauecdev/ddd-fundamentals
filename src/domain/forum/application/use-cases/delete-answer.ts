@@ -1,4 +1,4 @@
-import { AnswersRepository } from "../repositories/answers-repository";
+import { AnswersRepository } from '../repositories/answers-repository'
 
 interface DeleteAnswerUseCaseRequest {
   authorId: string
@@ -10,16 +10,16 @@ export class DeleteAnswerUseCase {
 
   async execute({
     authorId,
-    answerId
+    answerId,
   }: DeleteAnswerUseCaseRequest): Promise<void> {
     const answer = await this.answersRepository.findById(answerId)
 
     if (!answer) {
-      throw new Error("Answer not found.")
+      throw new Error('Answer not found.')
     }
 
     if (authorId !== answer.authorId.toString()) {
-      throw new Error("Not allowed.")
+      throw new Error('Not allowed.')
     }
 
     await this.answersRepository.delete(answer)

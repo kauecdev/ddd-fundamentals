@@ -1,5 +1,5 @@
-import { Question } from "../../enterprise/entities/question";
-import { QuestionsRepository } from "../repositories/questions-repository";
+import { Question } from '../../enterprise/entities/question'
+import { QuestionsRepository } from '../repositories/questions-repository'
 
 interface GetQuestionBySlugUseCaseRequest {
   slug: string
@@ -13,7 +13,7 @@ export class GetQuestionBySlugUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
 
   async execute({
-    slug
+    slug,
   }: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
     const question = await this.questionsRepository.findBySlug(slug)
 
@@ -22,7 +22,7 @@ export class GetQuestionBySlugUseCase {
     }
 
     return {
-      question
+      question,
     }
   }
 }
