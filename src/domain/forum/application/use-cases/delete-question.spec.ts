@@ -1,5 +1,5 @@
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
-import { makeQuesion } from 'test/factories/make-question'
+import { makeQuestion } from 'test/factories/make-question'
 import { DeleteQuestionUseCase } from './delete-question'
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
@@ -13,7 +13,7 @@ describe('Delete Question Use Case', () => {
   })
 
   it('should be able to delete a question', async () => {
-    const newQuestion = makeQuesion({
+    const newQuestion = makeQuestion({
       authorId: new UniqueEntityId('author-01')
     }, new UniqueEntityId('question-01'))
 
@@ -28,7 +28,7 @@ describe('Delete Question Use Case', () => {
   })
 
   it('should not be able to delete a question from another user', async () => {
-    const newQuestion = makeQuesion({
+    const newQuestion = makeQuestion({
       authorId: new UniqueEntityId('author-01')
     }, new UniqueEntityId('question-01'))
 

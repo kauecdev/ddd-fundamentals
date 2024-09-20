@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker'
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
 import { Question, QuestionProps } from "@/domain/forum/enterprise/entities/question";
 
-export function makeQuesion(
+export function makeQuestion(
   override: Partial<QuestionProps> = {},
   id?: UniqueEntityId,
 ) {
