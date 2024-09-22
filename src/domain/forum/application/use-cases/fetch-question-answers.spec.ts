@@ -14,28 +14,36 @@ describe('Fetch Question Answers Use Case', () => {
   })
 
   it('should be able to fetch question answers', async () => {
-    await inMemoryAnswerRepository.create(makeAnswer({ questionId: new UniqueEntityId('question-01')}))
-    await inMemoryAnswerRepository.create(makeAnswer({ questionId: new UniqueEntityId('question-01')}))
-    await inMemoryAnswerRepository.create(makeAnswer({ questionId: new UniqueEntityId('question-01')}))
+    await inMemoryAnswerRepository.create(
+      makeAnswer({ questionId: new UniqueEntityId('question-01') })
+    )
+    await inMemoryAnswerRepository.create(
+      makeAnswer({ questionId: new UniqueEntityId('question-01') })
+    )
+    await inMemoryAnswerRepository.create(
+      makeAnswer({ questionId: new UniqueEntityId('question-01') })
+    )
 
-    const { answers } = await sut.execute({
+    const result = await sut.execute({
       questionId: 'question-01',
-      page: 1
+      page: 1,
     })
 
-    expect(answers).toHaveLength(3)
+    expect(result.value?.answers).toHaveLength(3)
   })
 
   it('should be able to fetch paginated question answers', async () => {
     for (let i = 1; i <= 22; i++) {
-      await inMemoryAnswerRepository.create(makeAnswer({ questionId: new UniqueEntityId('question-01')}))
+      await inMemoryAnswerRepository.create(
+        makeAnswer({ questionId: new UniqueEntityId('question-01') })
+      )
     }
 
-    const { answers } = await sut.execute({
+    const result = await sut.execute({
       questionId: 'question-01',
-      page: 2
+      page: 2,
     })
 
-    expect(answers).toHaveLength(2)
+    expect(result.value?.answers).toHaveLength(2)
   })
 })
